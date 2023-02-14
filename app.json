@@ -5,7 +5,15 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c8323629-63bb-4469-8048-590861668e89"
+      }
+    }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-8647279125417942~6811266410"
   },
   "name": "doomsdayButton"
 }

@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { useState, useEffect } from "react";
+import Button from "./Button";
+import * as Font from "expo-font";
+import SplashScreen from "react-native-splash-screen";
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [appIsReady, setAppIsReady] = useState(false);
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await Font.loadAsync(
+          "Galmuri7",
+          require("./Assets/Fonts/Galmuri7.ttf")
+        );
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
+        SplashScreen.hide();
+      }
+    }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    prepare();
+  }, []);
+  if (!appIsReady) {
+    return null;
+  }
+  return <Button />;
+}
